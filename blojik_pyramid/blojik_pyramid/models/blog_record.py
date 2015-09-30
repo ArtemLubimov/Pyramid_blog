@@ -1,13 +1,14 @@
 import datetime #<- will be used to set default dates on models
-
+from blojik_pyramid.models.meta import Base  #<- we need to import our sqlalchemy metadata for model classes to inherit from
 from sqlalchemy import (
     Column,
     Integer,
     Unicode,     #<- will provide unicode field,
     UnicodeText, #<- will provide unicode text field,
     DateTime     #<- time abstraction field,
-    )
-from blojik_pyramid.models.meta import Base  #<- we need to import our sqlalchemy metadata for model classes to inherit from
+)
+from webhelpers2.text import urlify #<- will generate slugs
+from webhelpers2.date import distance_of_time_in_words #<- human friendly dates
 
 
 class BlogRecord(Base):
@@ -17,3 +18,11 @@ class BlogRecord(Base):
     body = Column(UnicodeText, default=u'')
     created = Column(DateTime, default=datetime.datetime.utcnow)
     edited = Column(DateTime, default=datetime.datetime.utcnow)
+
+    @property
+    def slug(self):
+        return urlify(self.title)
+
+    @property
+    def created_in_words(self):
+        return distance_of_time_in_words(self.created, datetime.datetime.utcnow())

@@ -9,14 +9,18 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
-    'pyramid',
-    'pyramid_chameleon',
+    'pyramid==1.5.7',
+    'pyramid_mako', # replaces default chameleon templates
     'pyramid_debugtoolbar',
     'pyramid_tm',
-    'SQLAlchemy',
+    'SQLAlchemy==1.0.8',
     'transaction',
     'zope.sqlalchemy',
     'waitress',
+    'wtforms==2.0.2',  # form library
+    'webhelpers2==2.0', # various web building related helpers
+    'paginate==0.5', # pagination helpers
+    'paginate_sqlalchemy==0.2.0'
     ]
 
 setup(name='blojik_pyramid',

@@ -11,11 +11,20 @@
     <title>Alchemy Scaffold for The Pyramid Web Framework</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="//oss.maxcdn.com/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this scaffold -->
     <link href="${request.static_url('blojik_pyramid:static/theme.css')}" rel="stylesheet">
+    <style type="text/css">
+    a, a:link, a:visited{
+        color: #ffcc00;
+        font-weight: bold;
+    }
+    a:hover{
+        color: #ffff00
+    }
 
+    </style>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -34,7 +43,14 @@
           <div class="col-md-10">
             <div class="content">
               <h1><span class="font-semi-bold">Pyramid</span> <span class="smaller">Alchemy scaffold</span></h1>
-              <p class="lead">Welcome to <span class="font-normal">${project}</span>, an&nbsp;application generated&nbsp;by<br>the <span class="font-normal">Pyramid Web Framework 1.5.7</span>.</p>
+              <p class="lead">Welcome to <span class="font-normal">Blojik Pyramid</span>, an&nbsp;application generated&nbsp;by<br>the <span class="font-normal">Pyramid Web Framework 1.5.7</span>.</p>
+
+                <div>
+                    <!-- this is where contents of template inheriting from this layout will be inserted -->
+                  ${next.body()}
+                    <!-- this is where contents of template inheriting from this layout will be inserted -->
+                </div>
+
             </div>
           </div>
         </div>
