@@ -4,7 +4,6 @@ from sqlalchemy import (
     Column,
     Integer,
     Unicode,     #<- will provide unicode field,
-    UnicodeText, #<- will provide unicode text field,
     DateTime     #<- time abstraction field,
     )
 from blojik_pyramid.models.meta import Base  #<- we need to import our sqlalchemy metadata for model classes to inherit from
