@@ -1,0 +1,5 @@
+      [paste.app_factory]
+      main = blojik_pyramid:main
+      [console_scripts]
+      initialize_blojik_pyramid_db = blojik_pyramid.scripts.initializedb:main
+      
