@@ -48,7 +48,7 @@ p {
   color: #ffffff;
 }
 .starter-template .links {
-  float: right;
+  float: center;
   right: 0;
   margin-top: 125px;
 }
@@ -85,13 +85,16 @@ p {
 .starter-template .links ul li:hover .icon-muted {
   color: #ffffff;
 }
+.starter-template .links{
+  text-align: center;
+  float: center;
+}
 .starter-template .copyright {
   margin-top: 10px;
   font-size: 0.9em;
   color: #f2b7bd;
   text-transform: lowercase;
-  float: right;
-  right: 0;
+  float: center;
 }
 @media (max-width: 1199px) {
   .starter-template .content h1 {

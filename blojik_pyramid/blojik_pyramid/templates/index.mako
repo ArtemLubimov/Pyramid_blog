@@ -1,14 +1,12 @@
 <%inherit file="blojik_pyramid:templates/layout.mako"/>
-<% link_attr={"class": "btn btn-default btn-xs"} %>
-<% curpage_attr={"class": "btn btn-default btn-xs disabled"} %>
-<% dotdot_attr={"class": "btn btn-default btn-xs disabled"} %>
 
-
+<header>
 % if request.authenticated_userid:
-    Welcome <strong>${request.authenticated_userid}</strong> ::
+    Welcome <strong>${request.authenticated_userid}</strong>
     <a href="${request.route_url('auth',action='out')}">Sign Out</a>
 %else:
-    <form action="${request.route_url('auth',action='in')}" method="post" class="form-inline">
+    <div class="form-inline">
+    <form action="${request.route_url('auth',action='in')}" method="post" >
         <div class="form-group">
             <label>User</label> <input type="text" name="username" class="form-control">
         </div>
@@ -17,8 +15,12 @@
         <input type="submit" value="Sign in" class="btn btn-default">
         </div>
     </form>
+    <form action="${request.route_url('auth',action='register')}"method="post" >
+            <input type="submit" value="Register" class="btn btn-default">
+    </form>
+    </div>
 %endif
-
+</header>
 
 % if paginator.items:
 

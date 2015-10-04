@@ -1,0 +1,83 @@
+{% extends "blojik_pyramid:templates/layout.jinja2" %}
+{% block content %}
+
+<div id="window" style="display: none;">
+    <img class="close" onclick="show('none')" src="http://sergey-oganesyan.ru/wp-content/uploads/2014/01/close.png">
+    <form action="{{ request.route_url('auth',action='reg') }}" method="post" role="form" >
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="username" class="form-control" name="username" placeholder="Input Username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        <button type="submit" value="Sign In" class="btn btn-success">Register</button>
+    </form>
+</div>
+<div onclick="show('none')" id="wrap" style="display:none;"></div>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand">Welcome to My Pyramid Blog</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            {% if request.authenticated_userid %}
+            <div class="navbar-form navbar-right">
+                Welcome {{ request.authenticated_userid }}
+                <a class ="btn btn-link" href="{{ request.route_url('blog_action',action='create') }}">
+                    Create a new blog entry</a>
+                <button type="button" class ="btn btn-link">
+                    <a href="{{ request.route_url('auth',action='out') }}">Sign Out</a>
+                </button>
+            </div>
+            {% else: %}
+            <form class="navbar-form navbar-right" action="{{ request.route_url('auth',action='in') }}" method="post" role="form">
+                <div class="form-group">
+                    <input type="text" placeholder="User" name="username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" name="password" class="form-control">
+                </div>
+                <button type="submit" value="Sign in" class="btn btn-success">Sign In</button>
+                <a class="btn btn-success" onclick="show('block')">Register</a>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Blog entries</h2>
+            <p>This is test blog</p>
+        </div>
+    </div>
+{% if paginator.items %}
+    <div class="container">
+            {% for entry in paginator.items %}
+                <div class="row">
+                <div class="col-md-4">
+                    <h2>{{ entry.title }}</h2>
+                    <p>
+                        {{ entry.body[1:100] }}...
+                    </p>
+                    <p>
+                    <a class="btn btn-default" href="{{ request.route_url('blog', id=entry.id, slug=entry.slug) }}" role="button">
+                        Read >></a>
+                    </p>
+                </div>
+                </div>
+            {% endfor %}
+     <hr>
+    <footer><p>© Liubymov A.S.</p></footer>
+
+
+    {{ paginator.pager(link_attr=link_attr, curpage_attr=curpage_attr, dotdot_attr=dotdot_attr) }}
+
+{% else %}
+    <p>No blog entries found. Please create some</p>
+{% endif %}
+    </div>
+{% endblock %}
