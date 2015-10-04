@@ -10,6 +10,9 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
 
 requires = [
     'pyramid==1.5.7',
+    'jinja2==2.8',
+    'psycopq2==2.6.1',
+    'pyramid-jinja2==2.5'
     'pyramid_mako', # replaces default chameleon templates
     'pyramid_debugtoolbar',
     'pyramid_tm',
